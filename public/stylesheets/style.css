@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+  --primary: #79dafa;
+  --tertiary: #ff6e96;
+  --secondary: #282a36;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu';
+}
+
+.badge {
+  background-color: var(--secondary);
+  width: 467px;
+  height: 195px;
+  border-radius: 1.2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  outline-offset: -1px;
+  position: relative;
+}
+
+.badge-title {
+  font-weight: 800;
+  margin-left: 20px;
+  font-size: 16px;
+  text-align: left;
+  top: 0;
+  position: absolute;
+  color: var(--tertiary);
+
+  animation-name: scaleIn;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.badge-description {
+  padding: 20px;
+  font-size: 14px;
+  text-align: start;
+  width: 100%;
+  font-size: 0.8rem;
+  height: 30%;
+
+  animation-name: scaleIn;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.badge-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 800;
+  margin: 10px auto;
+  bottom: 5%;
+
+  animation-name: scaleIn;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}

@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var badgeRouter = require('./routes/badge');
 var indexRouter = require('./routes/index');
-
 var app = express();
 
 // view engine setup
@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bootstrap', express.static(path.resolve(__dirname, './node_modules/bootstrap/dist')));
 
+app.use('/badge', badgeRouter);
 app.use('/', indexRouter);
 
 //#region Error Handler

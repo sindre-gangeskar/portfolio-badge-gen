@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio Badge Generator</title>
+        <%- include('./partials/header.ejs') %>
+            <link rel="stylesheet" href="stylesheets/style.css">
+    </head>
+
+    <body>
+        <iframe src="/badge?title=This%20is%20a%20project%20title" width="467px" height="197px" class="presentation" id="iframe"></iframe>
+        <form action="/" method="get" class="container container-fluid position-absolute start-50 top-50" id="badge-form" style="transform: translate(-50%, -50%); max-width: 916px;">
+            <div class="input-wrapper input-group-sm">
+                <input type="text" name="title" id="title" placeholder="Title.." class="input-title form-control">
+                <input type="text" name="description" id="description" placeholder="Description.." class="input-title form-control">
+                <input type="text" name="url-text" id="url-text" placeholder="Text for URL" class="input-name form-control">
+                <input type="text" name="url" id="url" placeholder="URL" class="input-link form-control">
+                <input type="checkbox" name="compact" id="query-compact" class="input-compact form-check-input bg-dark text-bg-danger">
+                <label for="query-compact" class="form-check-label text-white">Compact</label>
+                <button class="btn btn-dark right" role="submit">Submit</button>
+            </div>
+        </form>
+
+        <!--  <div class="lines-group">
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+        <div class="line-3"></div>
+        <div class="line-4"></div>
+    </div> -->
+        <%- include('./partials/scripts.ejs') %>
+            <script>
+                const badgeForm = document.getElementById('badge-form');
+
+
+                badgeForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const title = document.getElementById('title').value;
+                    const description = document.getElementById('description').value;
+                    const urlText = document.getElementById('url-text').value;
+                    const url = document.getElementById('url').value;
+
+                    console.log(url);
+
+                    const submitBtn = document.getElementById('submit-btn');
+                    let iframe = document.getElementById('iframe');
+
+                    let queryString = '';
+                    let firstQueryAdded = false;
+
+                    if (title != '') {
+                        queryString = updateQuery(queryString, firstQueryAdded);
+                        queryString += `title=${title}`;
+                        firstQueryAdded = true;
+                    }
+                    if (description != '') {
+                        queryString = updateQuery(queryString, firstQueryAdded);
+                        queryString += `description=${description}`;
+                        firstQueryAdded = true;
+                    }
+                    if (urlText != '') {
+                        queryString = updateQuery(queryString, firstQueryAdded);
+                        queryString += `linkName=${urlText}`;
+                        firstQueryAdded = true;
+                    }
+                    if (url != '') {
+                        queryString = updateQuery(queryString, firstQueryAdded);
+                        queryString += `url=${url}`;
+                        firstQueryAdded = true;
+                    }
+
+                    iframe.src = `/badge${queryString}`;
+                })
+
+                function updateQuery(query, firstAdded) {
+                    if (firstAdded) query += '&';
+                    else query += '?';
+
+                    return query;
+                }
+            </script>
+    </body>
+
+</html>
